@@ -1,1 +1,906 @@
-<h1>Rally — Coming Soon</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rally — Stay Connected When It Matters Most</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --coral: #E8614A;
+      --coral-light: #F28C7A;
+      --coral-pale: #FDF0EE;
+      --navy: #1C2B3A;
+      --slate: #4A5568;
+      --stone: #F7F5F2;
+      --white: #FFFFFF;
+      --border: #E2DDD8;
+      --font: 'Georgia', serif;
+      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--navy);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font);
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--coral);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--slate);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--coral); }
+
+    .nav-cta {
+      background: var(--coral);
+      color: var(--white) !important;
+      padding: 0.45rem 1.1rem;
+      border-radius: 20px;
+    }
+
+    .nav-cta:hover { background: var(--coral-light) !important; }
+
+    /* HERO */
+    .hero {
+      padding: 140px 5% 80px;
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-text { flex: 1; }
+
+    .hero-eyebrow {
+      display: inline-block;
+      background: var(--coral-pale);
+      color: var(--coral);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: var(--font);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      line-height: 1.2;
+      color: var(--navy);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--coral);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--slate);
+      max-width: 480px;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--coral);
+      color: var(--white);
+      padding: 0.75rem 1.8rem;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover { background: var(--coral-light); transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--navy);
+      padding: 0.75rem 1.8rem;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 2px solid var(--border);
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover { border-color: var(--coral); color: var(--coral); }
+
+    .hero-visual {
+      flex: 0 0 340px;
+      background: var(--coral-pale);
+      border-radius: 24px;
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .phone-mockup {
+      width: 200px;
+      height: 360px;
+      background: var(--navy);
+      border-radius: 28px;
+      padding: 12px;
+      box-shadow: 0 24px 60px rgba(28,43,58,0.3);
+    }
+
+    .phone-screen {
+      background: var(--white);
+      border-radius: 18px;
+      height: 100%;
+      padding: 14px 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      overflow: hidden;
+    }
+
+    .phone-header {
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: var(--coral);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .phone-event-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--navy);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .phone-group {
+      background: var(--stone);
+      border-radius: 8px;
+      padding: 7px 9px;
+      font-size: 0.58rem;
+      color: var(--slate);
+      line-height: 1.5;
+    }
+
+    .phone-group strong {
+      display: block;
+      color: var(--navy);
+      font-size: 0.62rem;
+      margin-bottom: 2px;
+    }
+
+    .phone-msg {
+      background: var(--coral-pale);
+      border-radius: 8px;
+      padding: 7px 9px;
+      font-size: 0.58rem;
+      color: var(--navy);
+      border-left: 3px solid var(--coral);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .phone-send {
+      margin-top: auto;
+      background: var(--coral);
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.04em;
+    }
+
+    /* SHARED SECTION */
+    section { padding: 80px 5%; }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: var(--font);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      color: var(--navy);
+      margin-bottom: 1rem;
+      line-height: 1.25;
+    }
+
+    /* HOW IT WORKS */
+    #how-it-works { background: var(--stone); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .step {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1.75rem;
+      border: 1px solid var(--border);
+    }
+
+    .step-num {
+      width: 38px;
+      height: 38px;
+      background: var(--coral);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .step h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .step p {
+      font-size: 0.875rem;
+      color: var(--slate);
+      line-height: 1.65;
+    }
+
+    .coming-soon-note {
+      margin-top: 2.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--coral-pale);
+      border: 1px solid #f0c4bc;
+      border-radius: 10px;
+      padding: 0.75rem 1.2rem;
+      font-size: 0.875rem;
+      color: var(--coral);
+    }
+
+    /* ABOUT */
+    #about { background: var(--white); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+
+    .about-story {
+      font-size: 1rem;
+      color: var(--slate);
+      line-height: 1.85;
+    }
+
+    .about-story p { margin-bottom: 1.25rem; }
+    .about-story p:last-child { margin-bottom: 0; }
+
+    blockquote {
+      border-left: 3px solid var(--coral);
+      padding-left: 1.2rem;
+      font-family: var(--font);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--navy);
+      margin: 1.5rem 0;
+      line-height: 1.6;
+    }
+
+    .founder-card {
+      background: var(--stone);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    .founder-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--coral-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      border: 2px solid #f0c4bc;
+    }
+
+    .founder-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--navy);
+    }
+
+    .founder-title {
+      font-size: 0.82rem;
+      color: var(--coral);
+      margin-bottom: 0.85rem;
+    }
+
+    .founder-bio {
+      font-size: 0.875rem;
+      color: var(--slate);
+      line-height: 1.7;
+    }
+
+    .use-cases {
+      background: var(--stone);
+      border-radius: 16px;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+    }
+
+    .use-cases-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 1rem;
+    }
+
+    .use-case {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.875rem;
+      color: var(--slate);
+      padding: 0.4rem 0;
+    }
+
+    .use-case + .use-case {
+      border-top: 1px solid var(--border);
+    }
+
+    .use-case-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--coral);
+      flex-shrink: 0;
+    }
+
+    /* PRICING */
+    #pricing { background: var(--stone); }
+
+    .pricing-intro {
+      font-size: 1rem;
+      color: var(--slate);
+      max-width: 540px;
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 760px;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 2px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .pricing-card.featured { border-color: var(--coral); }
+
+    .featured-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--coral);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.25rem 1rem;
+      border-radius: 20px;
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .plan-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .plan-price {
+      font-family: var(--font);
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--navy);
+      line-height: 1.1;
+      margin-bottom: 0.25rem;
+    }
+
+    .plan-price span {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--slate);
+    }
+
+    .plan-desc {
+      font-size: 0.84rem;
+      color: var(--slate);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.55;
+    }
+
+    .plan-features {
+      list-style: none;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-bottom: 2rem;
+    }
+
+    .plan-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.875rem;
+      color: var(--slate);
+    }
+
+    .plan-features li::before {
+      content: '✓';
+      color: var(--coral);
+      font-weight: 700;
+      flex-shrink: 0;
+      line-height: 1.5;
+    }
+
+    .plan-cta {
+      display: block;
+      text-align: center;
+      padding: 0.7rem;
+      border-radius: 10px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .plan-cta-outline {
+      border: 2px solid var(--border);
+      color: var(--navy);
+    }
+
+    .plan-cta-outline:hover { border-color: var(--coral); color: var(--coral); }
+
+    .plan-cta-filled {
+      background: var(--coral);
+      color: var(--white);
+    }
+
+    .plan-cta-filled:hover { background: var(--coral-light); }
+
+    .plan-note {
+      font-size: 0.76rem;
+      color: #9AA5B4;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    /* CONTACT */
+    #contact { background: var(--coral); }
+
+    .contact-inner {
+      max-width: 580px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    #contact .section-label { color: rgba(255,255,255,0.65); }
+    #contact .section-title { color: var(--white); }
+
+    .contact-sub {
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      line-height: 1.65;
+    }
+
+    .contact-email {
+      display: inline-block;
+      background: var(--white);
+      color: var(--coral);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+
+    .contact-email:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      padding: 1.5rem 5%;
+      font-size: 0.8rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    @media (max-width: 560px) {
+      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+    }
+
+    @media (max-width: 700px) {
+      .hero { flex-direction: column; padding-top: 100px; gap: 2.5rem; }
+      .hero-visual { flex: none; width: 100%; height: 300px; }
+      .nav-links { display: none; }
+    }
+  </style>
+  <style>
+    #gate {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--coral-pale);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    #gate .gate-logo {
+      font-family: var(--font);
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--coral);
+      letter-spacing: -0.5px;
+    }
+
+    #gate .gate-tagline {
+      font-size: 1rem;
+      color: var(--slate);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    #gate form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    #gate input[type="password"] {
+      padding: 0.65rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      width: 240px;
+      outline: none;
+      color: var(--navy);
+      background: var(--white);
+      transition: border-color 0.2s;
+    }
+
+    #gate input[type="password"]:focus { border-color: var(--coral); }
+
+    #gate button {
+      background: var(--coral);
+      color: var(--white);
+      border: none;
+      padding: 0.65rem 1.8rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      width: 240px;
+    }
+
+    #gate button:hover { background: var(--coral-light); }
+
+    #gate .gate-error {
+      font-size: 0.82rem;
+      color: var(--coral);
+      min-height: 1em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PASSWORD GATE -->
+  <div id="gate">
+    <div class="gate-logo">Rally</div>
+    <div class="gate-tagline">Coming Soon</div>
+    <form onsubmit="checkPassword(event)">
+      <input type="password" id="pw-input" placeholder="Enter password" autocomplete="current-password" />
+      <div class="gate-error" id="gate-error"></div>
+      <button type="submit">Continue</button>
+    </form>
+  </div>
+
+  <script>
+    (function() {
+      if (sessionStorage.getItem('rally_auth') === '1') {
+        document.getElementById('gate').style.display = 'none';
+      }
+    })();
+
+    function checkPassword(e) {
+      e.preventDefault();
+      const val = document.getElementById('pw-input').value;
+      if (val === 'EZQo.2JRXwM*WM*WzdAn') {
+        sessionStorage.setItem('rally_auth', '1');
+        document.getElementById('gate').style.display = 'none';
+      } else {
+        document.getElementById('gate-error').textContent = 'Incorrect password.';
+        document.getElementById('pw-input').value = '';
+        document.getElementById('pw-input').focus();
+      }
+    }
+  </script>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Rally</a>
+    <ul class="nav-links">
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#about">Our Story</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-text">
+      <span class="hero-eyebrow">Coming soon</span>
+      <h1>Reach the right people at the <em>right moment.</em></h1>
+      <p class="hero-sub">Rally is a mobile app that makes it easy to keep the people who matter most in the loop — during life's biggest, most overwhelming moments.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Get Notified</a>
+        <a href="#how-it-works" class="btn-secondary">How It Works</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="phone-mockup">
+        <div class="phone-screen">
+          <div class="phone-header">Rally</div>
+          <div class="phone-event-title">Mom's Surgery</div>
+          <div class="phone-group">
+            <strong>Close Family</strong>
+            She's out of recovery and resting. Visitors welcome after 4pm.
+          </div>
+          <div class="phone-group">
+            <strong>Friends &amp; Coworkers</strong>
+            Surgery went well — thank you all for the love.
+          </div>
+          <div class="phone-msg">
+            "Rally made this so much easier during the hardest week."
+          </div>
+          <div class="phone-send">↑ Send Update</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works">
+    <div class="section-inner">
+      <div class="section-label">How It Works</div>
+      <div class="section-title">Simple by design.</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Create an Event</h3>
+          <p>Name your moment — a hospital stay, a wedding weekend, a family emergency. Set it up in seconds.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Build Your Groups</h3>
+          <p>Add contacts and organize them into groups. Close family, extended network, coworkers — whoever needs to know.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Send Updates</h3>
+          <p>Write once, reach many. Tailor messages by group — no group chat chaos, no missed calls, no dropped threads.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h3>Stay Present</h3>
+          <p>Spend less time managing logistics and more time on what actually matters — the people right in front of you.</p>
+        </div>
+      </div>
+      <div class="coming-soon-note">
+        🚀 Rally is currently in development — <a href="#contact" style="color:var(--coral);font-weight:700;text-decoration:none;">sign up to be notified at launch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="section-label">Our Story</div>
+      <div class="section-title">Built from a real moment of need.</div>
+      <div class="about-grid">
+        <div class="about-story">
+          <p>I had packed my bags for a ski weekend and planned an early morning workout with a friend before hitting the road. By that afternoon, I was in the ER.</p>
+          <p>What started as a stomachache turned into a battery of tests, emergency surgery, and a 10-day hospital stay. With everything happening so fast, I had no good way to keep the people who mattered most in the loop. Phone calls were exhausting. Group texts fell apart. I needed something that didn't exist yet.</p>
+          <blockquote>"My medical team was exceptional, but they couldn't be everything. The support of friends and family outside those hospital walls was crucial to my recovery."</blockquote>
+          <p>We live far from each other, and in moments that move fast, we need technology that keeps up. Rally is that tool — whether you're navigating a health crisis, coordinating a wedding weekend, or managing any life moment that involves more people than a text thread can handle.</p>
+          <p>— <strong>Lexi</strong>, Founder</p>
+        </div>
+        <div>
+          <div class="founder-card">
+            <div class="founder-avatar">👩</div>
+            <div class="founder-name">Lexi Graham</div>
+            <div class="founder-title">Founder, Rally</div>
+            <div class="founder-bio">Patient, caregiver, friend, sister, and bridesmaid — Lexi has lived the communication breakdown from every angle. Rally is her answer to the problem she couldn't stop thinking about.</div>
+          </div>
+          <div class="use-cases">
+            <div class="use-cases-title">Rally is for moments like these</div>
+            <div class="use-case"><div class="use-case-dot"></div>Health emergencies &amp; hospital stays</div>
+            <div class="use-case"><div class="use-case-dot"></div>Wedding weekends &amp; major celebrations</div>
+            <div class="use-case"><div class="use-case-dot"></div>Family caregiving coordination</div>
+            <div class="use-case"><div class="use-case-dot"></div>Any moment too big for a group text</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="section-inner">
+      <div class="section-label">Pricing</div>
+      <div class="section-title">Start free. Scale when you need to.</div>
+      <p class="pricing-intro">Rally launches with a free tier so anyone can get started. Paid plans are on the way — join the waitlist to be first to know.</p>
+      <div class="pricing-grid">
+
+        <!-- FREE -->
+        <div class="pricing-card">
+          <div class="plan-name">Free</div>
+          <div class="plan-price">$0 <span>/ month</span></div>
+          <div class="plan-desc">Perfect for occasional life events — no commitment needed.</div>
+          <ul class="plan-features">
+            <li>2 events per month</li>
+            <li>2 groups per event</li>
+            <li>Up to 10 contacts per group</li>
+            <li>160 characters per message</li>
+          </ul>
+          <a href="#contact" class="plan-cta plan-cta-outline">Get Notified at Launch</a>
+        </div>
+
+        <!-- SOCIAL BUTTERFLY -->
+        <div class="pricing-card featured">
+          <div class="featured-badge">Coming Soon</div>
+          <div class="plan-name">Social Butterfly</div>
+          <div class="plan-price">TBD</div>
+          <div class="plan-desc">For those who coordinate often — caregivers, planners, and natural connectors.</div>
+          <ul class="plan-features">
+            <li>10 events per month</li>
+            <li>10 groups per event</li>
+            <li>Up to 100 contacts per group</li>
+            <li>160 characters per message</li>
+          </ul>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSddDISqY3ZOQM9_BFqY3be5v4AmhpyUZDuYrFrI-QwXPJYIhA/viewform?usp=dialog" target="_blank" class="plan-cta plan-cta-filled">Join the Waitlist</a>
+          <div class="plan-note">Pricing announced at launch</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="section-label">Questions?</div>
+      <div class="section-title">We'd love to hear from you.</div>
+      <p class="contact-sub">Whether you have a question, want to share your story, or just want to say hi — Lexi reads every email.</p>
+      <a href="mailto:rallyforsupport@gmail.com" class="contact-email">rallyforsupport@gmail.com</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 Rally. Made with care for the moments that matter.</p>
+  </footer>
+
+</body>
+</html>
