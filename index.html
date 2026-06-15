@@ -704,37 +704,7 @@
 </head>
 <body>
 
-  <!-- PASSWORD GATE -->
-  <div id="gate">
-    <div class="gate-logo">Rally</div>
-    <div class="gate-tagline">Coming Soon</div>
-    <form onsubmit="checkPassword(event)">
-      <input type="password" id="pw-input" placeholder="Enter password" autocomplete="current-password" />
-      <div class="gate-error" id="gate-error"></div>
-      <button type="submit">Continue</button>
-    </form>
-  </div>
 
-  <script>
-    (function() {
-      if (sessionStorage.getItem('rally_auth') === '1') {
-        document.getElementById('gate').style.display = 'none';
-      }
-    })();
-
-    function checkPassword(e) {
-      e.preventDefault();
-      const val = document.getElementById('pw-input').value;
-      if (val === 'EZQo.2JRXwM*WM*WzdAn') {
-        sessionStorage.setItem('rally_auth', '1');
-        document.getElementById('gate').style.display = 'none';
-      } else {
-        document.getElementById('gate-error').textContent = 'Incorrect password.';
-        document.getElementById('pw-input').value = '';
-        document.getElementById('pw-input').focus();
-      }
-    }
-  </script>
 
   <!-- NAV -->
   <nav>
